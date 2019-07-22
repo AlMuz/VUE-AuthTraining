@@ -10,7 +10,10 @@ export default new Vuex.Store({
     userId: null,
   },
   mutations: {
-
+    authUser (state, userData) {
+      state.idToken = userData.token;
+      state.userId = userData.userId;
+    }
   },
   actions: {
     signup({ commit }, payload) {
@@ -20,7 +23,12 @@ export default new Vuex.Store({
         password: payload.password,
         returnSecureToken: true
       })
-        .then(res => console.log(res))
+        .then(res => {
+          commit('authUser', {
+            token: res.data.idToken,
+            userId: res.data.localId
+          });
+        })
         .catch(error => console.log(error));
     },
     signin({ commit }, payload) {
@@ -30,7 +38,12 @@ export default new Vuex.Store({
         password: payload.password,
         returnSecureToken: true
       })
-        .then(res => console.log(res))
+        .then(res => {
+          commit('authUser', {
+            token: res.data.idToken,
+            userId: res.data.localId
+          });
+        })
         .catch(error => console.log(error))
     }
   },
