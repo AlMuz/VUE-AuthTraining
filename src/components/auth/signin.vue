@@ -27,6 +27,12 @@
 <script>
 
   export default {
+    beforeRouteEnter(to, from, next) {
+      if (localStorage.getItem('token')) {
+        return next({ path: "/" });
+      }
+      next();
+    },
     data () {
       return {
         email: '',

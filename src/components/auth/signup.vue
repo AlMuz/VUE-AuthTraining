@@ -87,6 +87,12 @@
   import { required, email, numeric, minValue, minLength, sameAs } from 'vuelidate/lib/validators'
   import axios from 'axios';
   export default {
+    beforeRouteEnter(to, from, next) {
+      if (localStorage.getItem('token')) {
+        return next({ path: "/" });
+      }
+      next();
+    },
     data () {
       return {
         email: '',
