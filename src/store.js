@@ -54,7 +54,7 @@ export default new Vuex.Store({
           dispatch('setLogoutTimer', res.data.expiresIn);
           router.replace('/dashboard');
         })
-        .catch(error => console.log(error));
+        .catch(error => alert('Wrong data or connection error'));
     },
     signin({ commit, dispatch }, payload) {
 
@@ -78,7 +78,7 @@ export default new Vuex.Store({
 
           router.replace('/dashboard');
         })
-        .catch(error => console.log(error))
+        .catch(error => alert('Wrong data or connection error'))
     },
     tryToAutoLogin({ commit }) {
 
