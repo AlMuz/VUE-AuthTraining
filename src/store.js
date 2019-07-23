@@ -127,8 +127,6 @@ export default new Vuex.Store({
       }
 
       globalAxios.post('/users.json' + '?auth=' + state.idToken, payload)
-        .then(res => console.log(res))
-        .catch(error => console.log(error))
     },
     fetchUser({ commit, state }, payload) {
       if (!state.idToken) {
@@ -137,7 +135,6 @@ export default new Vuex.Store({
 
       globalAxios.get('/users.json' + '?auth=' + state.idToken)
         .then(res => {
-          console.log(res)
           const data = res.data
           const users = []
           for (let key in data) {
@@ -145,7 +142,6 @@ export default new Vuex.Store({
             user.id = key
             users.push(user)
           }
-          console.log(users)
           commit('storeUser', users[0])
         })
         .catch(error => console.log(error))
