@@ -5,30 +5,30 @@
         <div class="input">
           <label for="email">Mail</label>
           <input
-                  type="email"
-                  id="email"
-                  v-model="email">
+            type="email"
+            id="email"
+            v-model="email">
         </div>
         <div class="input">
           <label for="age">Your Age</label>
           <input
-                  type="number"
-                  id="age"
-                  v-model.number="age">
+            type="number"
+            id="age"
+            v-model.number="age">
         </div>
         <div class="input">
           <label for="password">Password</label>
           <input
-                  type="password"
-                  id="password"
-                  v-model="password">
+            type="password"
+            id="password"
+            v-model="password">
         </div>
         <div class="input">
           <label for="confirm-password">Confirm Password</label>
           <input
-                  type="password"
-                  id="confirm-password"
-                  v-model="confirmPassword">
+            type="password"
+            id="confirm-password"
+            v-model="confirmPassword">
         </div>
         <div class="input">
           <label for="country">Country</label>
