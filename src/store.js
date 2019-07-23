@@ -33,7 +33,7 @@ export default new Vuex.Store({
     },
     signup({ commit, dispatch }, payload) {
 
-      axios.post('accounts:signUp?key=AIzaSyCaBZzde1-B1upFVZQgUx4hyuP6tOVwalw', {
+      axios.post('accounts:signUp?key=' + process.env.GOOGLE_API_KEY, {
         email: payload.email,
         password: payload.password,
         returnSecureToken: true
@@ -58,7 +58,7 @@ export default new Vuex.Store({
     },
     signin({ commit, dispatch }, payload) {
 
-      axios.post('accounts:signInWithPassword?key=AIzaSyCaBZzde1-B1upFVZQgUx4hyuP6tOVwalw', {
+      axios.post('accounts:signInWithPassword?key=' + process.env.GOOGLE_API_KEY, {
         email: payload.email,
         password: payload.password,
         returnSecureToken: true

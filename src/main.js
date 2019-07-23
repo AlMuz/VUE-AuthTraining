@@ -6,7 +6,7 @@ import router from './router'
 import store from './store'
 
 axios.defaults.headers.get['Accepts'] = 'application/json'
-axios.defaults.baseURL = 'https://vuejs-http-30886.firebaseio.com/'
+axios.defaults.baseURL = process.env.FIREBASE_URL
 
 const reqInterceptor = axios.interceptors.request.use(config => {
   console.log('Request Interceptor', config)
