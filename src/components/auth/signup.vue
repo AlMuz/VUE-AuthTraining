@@ -9,8 +9,8 @@
             id="email"
             @blur="$v.email.$touch()"
             v-model="email">
-          <p v-if="!$v.email.email">Please provide a valid email address</p>
-          <p v-if="!$v.email.required">This field mustn't be empty.</p>
+          <p v-if="!$v.email.email" class="red">Please provide a valid email address</p>
+          <p v-if="!$v.email.required" class="red">This field mustn't be empty.</p>
         </div>
         <div class="input" :class="{ invalid: $v.age.$error }">
           <label for="age">Your Age</label>
@@ -19,7 +19,7 @@
             id="age"
             @blur="$v.age.$touch()"
             v-model.number="age">
-          <p v-if="!$v.age.minVal">Your age have to be at least {{ $v.age.$params.minVal.min }} years.</p>
+          <p v-if="!$v.age.minVal" class="red">Your age have to be at least {{ $v.age.$params.minVal.min }} years.</p>
         </div>
         <div class="input" :class="{ invalid: $v.password.$error }">
           <label for="password">Password</label>
@@ -43,6 +43,7 @@
             <option disabled selected value> -- select an option -- </option>
             <option v-for="(item, index) in countries" :value="index">{{ item }}</option>
           </select>
+          <p v-if="!country" class="red">Please, choose the country!</p>
         </div>
         <div class="hobbies">
           <h3>Add some Hobbies</h3>
@@ -61,8 +62,8 @@
                 v-model="hobbyInput.value">
               <button @click="onDeleteHobby(hobbyInput.id)" type="button">X</button>
             </div>
-            <p v-if="!$v.hobbyInputs.minLen">You have specify at least {{ $v.hobbyInputs.$params.minLen.min }} hobbies.</p>
-            <p v-if="!$v.hobbyInputs.required">Please add some hobbies.</p>
+            <p v-if="!$v.hobbyInputs.minLen" class="red">You have specify at least {{ $v.hobbyInputs.$params.minLen.min }} hobbies.</p>
+            <p v-if="!$v.hobbyInputs.required" class="red">Please add some hobbies.</p>
           </div>
         </div>
         <div class="input inline" :class="{ invalid: $v.terms.$invalid }">
@@ -367,6 +368,9 @@
         required,
         minLen: minLength(6)
       },
+      country: {
+        required
+      },
       confirmPassword: {
         sameAs: sameAs('password')
       },
@@ -459,7 +463,11 @@
     font: inherit;
   }
 
-  .input.invalid label{
+  p.red {
+    color: red
+  }
+
+  .input.invalid label {
     color: red;
   }
 
