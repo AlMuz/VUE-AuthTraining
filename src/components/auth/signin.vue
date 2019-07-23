@@ -2,18 +2,20 @@
   <div id="signin">
     <div class="signin-form">
       <form @submit.prevent="onSubmit">
-        <div class="input">
+        <div class="input" :class="{ invalid: $v.email.$error }">
           <label for="email">Mail</label>
           <input
             type="email"
             id="email"
+            @blur="$v.email.$touch()"
             v-model="email">
         </div>
-        <div class="input">
+        <div class="input" :class="{ invalid: $v.password.$error }">
           <label for="password">Password</label>
           <input
             type="password"
             id="password"
+            @blur="$v.password.$touch()"
             v-model="password">
         </div>
         <div class="submit">
@@ -26,6 +28,8 @@
 
 <script>
 
+  import { required, email, minLength } from 'vuelidate/lib/validators'
+
   export default {
     beforeRouteEnter(to, from, next) {
       if (localStorage.getItem('token')) {
@@ -37,6 +41,16 @@
       return {
         email: '',
         password: ''
+      }
+    },
+    validations: {
+      email: {
+        required,
+        email
+      },
+      password: {
+        required,
+        minLen: minLength(6)
       }
     },
     methods: {
@@ -76,6 +90,15 @@
     padding: 6px 12px;
     box-sizing: border-box;
     border: 1px solid #ccc;
+  }
+
+  .input.invalid label {
+    color: red;
+  }
+
+  .input.invalid input{
+    border: 1px solid red;
+    background-color: #ffc9aa;
   }
 
   .input input:focus {
